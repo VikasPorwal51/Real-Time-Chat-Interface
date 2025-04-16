@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="visible"
+        android:id="@+id/recyclerView"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/errorText"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="No chat available"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_marginBottom="4dp" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#E8E8E8"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/inputMessage"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:hint="Send message..."
+            android:textColor="#000000"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/btnSend"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="10.03dp"
+            android:src="@drawable/ic_send_msg"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#E8E8E8"
+        android:layout_marginBottom="2dp"/>
+</LinearLayout>
