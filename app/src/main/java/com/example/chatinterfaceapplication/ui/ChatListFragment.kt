@@ -11,15 +11,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatinterfaceapplication.R
+import com.example.chatinterfaceapplication.utils.NetworkMonitor
 import com.example.chatinterfaceapplication.utils.NetworkUtil
 import com.example.chatinterfaceapplication.viewmodel.ChatViewModel
+import kotlinx.coroutines.launch
 
 class ChatListFragment : Fragment() {
     private lateinit var viewModel: ChatViewModel
     private val adapter = ChatAdapter()
+
+    private lateinit var networkMonitor: NetworkMonitor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,5 +77,21 @@ class ChatListFragment : Fragment() {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        networkMonitor = NetworkMonitor(requireContext()) {
+            // Trigger retry unsent messages when network is available
+            lifecycleScope.launch {
+                viewModel.retryMsg()
+            }
+        }
+        networkMonitor.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        networkMonitor.stop()
     }
 }

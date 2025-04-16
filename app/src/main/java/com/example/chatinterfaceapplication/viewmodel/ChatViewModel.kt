@@ -68,4 +68,10 @@ class ChatViewModel(app: Application) : AndroidViewModel(app) {
             }
         })
     }
+
+    fun retryMsg() {
+        viewModelScope.launch {
+            repo.retryUnsentMessages()
+        }
+    }
 }
